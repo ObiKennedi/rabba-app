@@ -9,14 +9,21 @@ import Link from "next/link"
 import "./globals.scss"
 import { useState } from "react"
 import { useTransition } from "react"
+import { useSearchParams } from "next/navigation"
 import { FormError } from "../form-error"
 import { FormSuccess } from "../form-success"
 import { login } from "@/actions/login"
+import { url } from "inspector"
 
 export const LoginForm = () => {
     const [error, setError] = useState<string | undefined>("")
     const [success, setSuccess] = useState<string | undefined>("")
     const [isPending, startTransition] = useTransition()
+
+    const searchParams = useSearchParams();
+    const UrlError = searchParams.get("error") === "OAuthAccountNotLinked" ?
+    "Email already in use with a different provider": ""
+    ;
 
     const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof LoginSchem>>({
         resolver: zodResolver(LoginSchem),
@@ -74,7 +81,7 @@ export const LoginForm = () => {
                         {errors.password && <small>{errors.password.message}</small>}
                     </div>
                 </div>
-                <FormError message={error}/>
+                <FormError message={error || UrlError}/>
                 <FormSuccess message={success}/>
                 <Link href={"/forgot-password"}>Forgot Password?</Link>
                 <button type="submit" disabled={isPending}>

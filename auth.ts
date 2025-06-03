@@ -10,6 +10,10 @@ export const {
     signIn,
     signOut,
 } = NextAuth({
+    pages: {
+        signIn: "/sign-in",
+        error: "/error-page"
+    },
     events: {
         async linkAccount({ user }){
             await db.user.update({
@@ -20,15 +24,16 @@ export const {
     },
 
     callbacks: {
-        /*async signIn({user}){
-            const existingUser = await getUserById(user.id)
+        async signIn({user, account}){
 
-            if (!existingUser || !existingUser.emailVerified){
-                return false
-            }
+            if (account?.provider == "credentials") return true
+            
+            const existingUser = await getUserById(user.id!);
+
+            if (!existingUser?.emailVerified) return false;
 
             return true
-        },*/
+        },
 
         async session({token, session}){
             if (token.sub && session.user){

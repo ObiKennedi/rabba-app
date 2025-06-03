@@ -10,7 +10,7 @@ interface CardWrapperProps {
     showGoogle?: boolean,
     backLinkLabel: string
     backLinkHref: string,
-    backLinkTitle: string,
+    backLinkTitle?: string,
     hasBackLink?: boolean,
 }
 
