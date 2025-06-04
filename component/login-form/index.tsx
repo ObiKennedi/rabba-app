@@ -6,14 +6,13 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { LoginSchem } from "@/schemas"
 import Link from "next/link"
-import "./globals.scss"
+import "./index.scss"
 import { useState } from "react"
 import { useTransition } from "react"
 import { useSearchParams } from "next/navigation"
 import { FormError } from "../form-error"
 import { FormSuccess } from "../form-success"
 import { login } from "@/actions/login"
-import { url } from "inspector"
 
 export const LoginForm = () => {
     const [error, setError] = useState<string | undefined>("")
@@ -83,7 +82,7 @@ export const LoginForm = () => {
                 </div>
                 <FormError message={error || UrlError}/>
                 <FormSuccess message={success}/>
-                <Link href={"/forgot-password"}>Forgot Password?</Link>
+                <Link href={"/reset-password"}>Forgot Password?</Link>
                 <button type="submit" disabled={isPending}>
                     {isPending ? "Logging in..." : "Login"}
                 </button>
