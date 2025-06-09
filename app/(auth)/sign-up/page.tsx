@@ -8,7 +8,7 @@ const SignUp = () => {
     return (
         <div className="sign-up">
             <div>
-                <Image
+                <img
                     src={"/icons/rabba-icon.png"}
                     width={200}
                     height={120}

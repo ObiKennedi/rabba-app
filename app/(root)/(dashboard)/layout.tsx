@@ -14,7 +14,7 @@ export default async function RootLayout({
         <>
             <main>
                 <section className="head-profile">
-                    <Image
+                    <img
                         src="/icons/rabba-icon.png"
                         width={300}
                         height={100}
@@ -38,7 +38,7 @@ export default async function RootLayout({
                                     />
                                 </svg>
                             ) : (
-                                <Image
+                                <img
                                     src={Dummy.profile}
                                     width={22}
                                     height={22}

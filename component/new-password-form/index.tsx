@@ -2,37 +2,41 @@
 
 import { CardWrapper } from "../Card-wrapper";
 import { useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation"
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import * as z from "zod";
-import { ResetSchema } from "@/schemas";
+import { NewPasswordSchema } from "@/schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { resetPassword } from "@/actions/reset";
+import { newPassword } from "@/actions/new-password";
 import "./index.scss"
 
-export const ResetPasswordForm = () => {
+export const NewPasswordForm = () => {
 
     const [error, setError] = useState<string | undefined>("")
     const [success, setSuccess] = useState<string | undefined>("")
     const [isPending, startTransition] = useTransition()
 
-    const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof ResetSchema>>({
-        resolver: zodResolver(ResetSchema),
+    const searchParams = useSearchParams();
+    const token = searchParams.get("token");
+
+    const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof NewPasswordSchema>>({
+        resolver: zodResolver(NewPasswordSchema),
         defaultValues: {
-            email: "",
+            password: "",
         }
     });
 
-    const onSubmit = async (values: z.infer<typeof ResetSchema>) => {
+    const onSubmit = async (values: z.infer<typeof NewPasswordSchema>) => {
         setError("")
         setSuccess("")
 
         startTransition(() => {
-            resetPassword(values)
+            newPassword(values, token)
                 .then((data) => {
-                    setError(data!.error);
-                    setSuccess(data!.success)
+                    setError(data?.error);
+                    setSuccess(data?.success)
                 })
         })
     };
@@ -40,7 +44,7 @@ export const ResetPasswordForm = () => {
     return (
         <CardWrapper
             headerLabel={"Forgot Password?"}
-            formWriteUp={"Recover your password if you have forgotten your password!"}
+            formWriteUp={"Set your new password to login into your account!"}
             hasBackLink
             backLinkTitle="Sign in"
             backLinkLabel={"Remembered your password?"}
@@ -49,21 +53,21 @@ export const ResetPasswordForm = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <div>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="password">Enter new password</label>
                         <input
-                            id="email"
-                            type="email"
-                            {...register("email")}
-                            placeholder="ex: johndoe@example.mail"
+                            id="password"
+                            type="password"
+                            {...register("password")}
+                            placeholder="******"
                             disabled={isPending}
                         />
-                        {errors.email && <small>{errors.email.message}</small>}
+                        {errors.password && <small>{errors.password.message}</small>}
                     </div>
                 </div>
                 <FormError message={error} />
                 <FormSuccess message={success} />
                 <button type="submit" disabled={isPending}>
-                    {isPending ? "Please wait..." : "Submit"}
+                    {isPending ? "Please wait..." : "Confirm"}
                 </button>
             </form>
         </CardWrapper>

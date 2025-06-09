@@ -16,7 +16,7 @@ const SideBar = () => {
             <ul>
                 <li className={isActive("/home") ? "active" : ""}>
                     <Link href="/home">
-                        <Image
+                        <img
                             src={
                                 isActive("/home") ? 
                                 "/icons/home-white.png" : 
@@ -32,7 +32,7 @@ const SideBar = () => {
 
                 <li className={isActive("/history") ? "active" : ""}>
                     <Link href="/history">
-                        <Image
+                        <img
                             src={
                                 !isActive("/history") ? 
                                 "/icons/history.png" : 
@@ -48,7 +48,7 @@ const SideBar = () => {
 
                 <li className={isActive("/messages") ? "active" : ""}>
                     <Link href="/messages">
-                        <Image
+                        <img
                             src={
                                 !isActive("/messages") ? 
                                 "/icons/notification.png" : 
@@ -64,7 +64,7 @@ const SideBar = () => {
 
                 <li className={isActive("/profile") ? "active" : ""}>
                     <Link href="/profile">
-                        <Image 
+                        <img 
                             src={
                                 !isActive("/profile") ? 
                                 "/icons/profile (2).png" :

@@ -17,7 +17,7 @@ const Home = () => {
     return (
         <main className="loading-page">
             <div>
-                <Image
+                <img
                     src={'/icons/logo.png'}
                     alt="logo"
                     width={70}
@@ -26,19 +26,19 @@ const Home = () => {
                 <div>Rabba</div>
             </div>
             <div>
-                <Image
+                <img
+                    src={"/icons/logo-background.png"}
+                    width={300}
+                    height={300}
+                    alt="loading icons"
+                />
+                <img
                     src={'/icons/logo-background.png'}
                     width={300}
                     height={300}
                     alt="loading icons"
                 />
-                <Image
-                    src={'/icons/logo-background.png'}
-                    width={300}
-                    height={300}
-                    alt="loading icons"
-                />
-                <Image
+                <img
                     src={'/icons/logo-background.png'}
                     width={300}
                     height={300}

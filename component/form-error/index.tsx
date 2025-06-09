@@ -9,7 +9,7 @@ export const FormError = ({message}:FormErrorProps) =>{
     if (!message) return null;
     return(
         <div className="form-error">
-            <Image 
+            <img 
                 src={"/icons/exclamation-triangle.png"}
                 width={18}
                 height={18}

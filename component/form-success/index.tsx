@@ -9,7 +9,7 @@ export const FormSuccess = ({message}:FormSuccessProps) =>{
     if (!message) return null
     return(
         <div className="form-success">
-            <Image
+            <img
                 src={"/icons/success-circle.png"}
                 width={18}
                 height={18}

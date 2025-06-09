@@ -19,7 +19,7 @@ export const GoogleAuth = () => {
             className="google-button"
             onClick={() => onClick("google")}
         >
-            <Image
+            <img
                 src={'/icons/google.png'}
                 width={24}
                 height={24}

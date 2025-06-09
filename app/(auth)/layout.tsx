@@ -6,7 +6,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
         <main className="auth">
             <section>
                 <div>
-                    <Image
+                    <img
                         src={'/icons/logo.png'}
                         alt="logo"
                         width={70}
@@ -15,19 +15,19 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
                     <div>Rabba</div>
                 </div>
                 <div>
-                    <Image
+                    <img
                         src={'/icons/logo-background.png'}
                         width={300}
                         height={300}
                         alt="loading icons"
                     />
-                    <Image
+                    <img
                         src={'/icons/logo-background.png'}
                         width={300}
                         height={300}
                         alt="loading icons"
                     />
-                    <Image
+                    <img
                         src={'/icons/logo-background.png'}
                         width={300}
                         height={300}

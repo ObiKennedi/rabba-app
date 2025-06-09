@@ -28,14 +28,14 @@ const BalanceCard = ({ balance }: BalanceProps) => {
         </div>
         <button onClick={() => setShowBalance(prev => !prev)}>
           {showBalance ? (
-            <Image
+            <img
               src="/icons/show-password.png"
               width={30}
               height={30}
               alt="show-password"
             />
           ) : (
-            <Image
+            <img
               src="/icons/hide-password.png"
               width={30}
               height={30}

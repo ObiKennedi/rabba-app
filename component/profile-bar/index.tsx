@@ -12,7 +12,7 @@ const Profile = ({ name, email, profile, fullName }: ProfileProps) => {
     return (
         <div className="profile-bar">
             <div>
-                <Image
+                <img
                     src={"/icons/rabba-icon.png"}
                     width={100}
                     height={50}
@@ -23,7 +23,7 @@ const Profile = ({ name, email, profile, fullName }: ProfileProps) => {
                 </div>
             </div>
             <div>
-                <Image
+                <img
                     src={profile === "" ? "/icons/dummy-2.png" : profile}
                     width={300}
                     height={300}
