@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --text-black: #343434;
+  --primary-blue: #5721FF;
+  --light-blue: #7F55FF;
+  --text-white: #FAF8F8;
+  --light-background: #FAF8FF;
+  --dark-background: #343434;
+  --error-red: #FF0100;
+  --error-background: #F15656C9;
+  --success-green: #00ff00;
+  --success-background: #32F332AB;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-button {
+  cursor: pointer;
+}

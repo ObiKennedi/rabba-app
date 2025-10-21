@@ -1,0 +1,53 @@
+body {
+    background: var(--light-background);
+    padding: 40px 32px;
+
+    @media (max-width:768px) {
+        padding: 10px;
+    }
+
+    >main {
+        display: flex;
+        justify-content: space-between;
+
+        >div {
+            width: 47%;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+
+            >img {
+                width: 50%;
+                height: 90vh;
+                margin: auto;
+            }
+
+            @media (max-width:900px) {
+                &:first-child {
+                    display: none;
+                }
+
+                &:last-child {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    button {
+        background: var(--primary-blue);
+        border: none;
+        text-align: center;
+        padding: 20px;
+        color: var(--text-white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 20px;
+    }
+
+    button.pending{
+        background: var(--light-blue);
+    }
+}
