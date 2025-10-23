@@ -1,8 +1,8 @@
+import { RegisterForm } from "@/components/auth/Register"
+
 const Register = () =>{
     return(
-        <form action="">
-            
-        </form>
+        <RegisterForm/>
     )
 }
 

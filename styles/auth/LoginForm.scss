@@ -37,6 +37,21 @@
             }
         }
 
+        .checkbox{
+            display: flex;
+            gap: 10px;
+
+            >span{
+                font-size: 12px;
+            }
+
+            >input{
+                width: 20px;
+                height: 20px;
+                padding: 5px;
+            }
+        }
+
         div.error-message{
             color: var(--error-red);
             font-size: 14px;
