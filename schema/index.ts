@@ -10,7 +10,7 @@ export const LoginSchema = z.object({
 })
 
 export const RegisterSchema = z.object({
-    fullName: z.string().min(1,{message: "Please tell us your name"}),
+    name: z.string().min(1,{message: "Please tell us your name"}),
     email: z.email({ 
         message: "This can't be your email." 
     }).min(1, { 

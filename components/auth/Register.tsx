@@ -23,7 +23,7 @@ export const RegisterForm = () => {
     const form = useForm<z.infer<typeof RegisterSchema>>({
         resolver: zodResolver(RegisterSchema),
         defaultValues: {
-            fullName: "",
+            name: "",
             email: "",
             password: ""
         }
@@ -61,9 +61,9 @@ export const RegisterForm = () => {
                             type="text"
                             id="fullName"
                             placeholder="ex: John Olev Smith"
-                            {...form.register("fullName")}
+                            {...form.register("name")}
                         />
-                        <div className="error-message">{form.formState.errors.fullName?.message}</div>
+                        <div className="error-message">{form.formState.errors.name?.message}</div>
                     </div>
                     <div className="input-container">
                         <label htmlFor="email">Email</label>
