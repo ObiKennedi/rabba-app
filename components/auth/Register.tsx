@@ -13,12 +13,14 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import "@/styles/auth/LoginForm.scss"
 import z from "zod"
 import { register } from "@/actions/register"
+import { Eye, EyeOff } from "lucide-react"
 
 export const RegisterForm = () => {
 
     const [error, setError] = useState<string | undefined>("")
     const [success, setSuccess] = useState<string | undefined>("")
     const [isPending, startTransition] = useTransition()
+    const [showPassword, setShowPassword] = useState(false)
 
     const form = useForm<z.infer<typeof RegisterSchema>>({
         resolver: zodResolver(RegisterSchema),
@@ -76,15 +78,27 @@ export const RegisterForm = () => {
                         />
                         <div className="error-message">{form.formState.errors.email?.message}</div>
                     </div>
-                    <div className="input-container">
+                    <div className="input-container password-container">
                         <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="******"
-                            {...form.register("password")}
-                            disabled={isPending}
-                        />
+                        <div className="password-wrapper">
+                            <input 
+                                disabled={isPending}
+                                id="password" 
+                                placeholder="******" 
+                                type={showPassword ? "text" : "password"} 
+                                {...form.register("password")}
+                            />
+                            <span 
+                                className="toggle-eye"
+                                onClick={() => setShowPassword(prev => !prev)} 
+                            >
+                                {showPassword ? (
+                                    <EyeOff size={20} strokeWidth={2}/>
+                                ) : (
+                                    <Eye size={20} strokeWidth={2}/>
+                                )}
+                            </span>
+                        </div>
                         <div className="error-message">{form.formState.errors.password?.message}</div>
                     </div>
                     <div className="checkbox">
