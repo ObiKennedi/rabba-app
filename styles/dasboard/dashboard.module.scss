@@ -1,0 +1,22 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background: #FAF8FF;
+    padding: 3rem 1rem;
+    width: 100% !important;
+}
+.bill {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: 100vh;
+    background: #FAF8FF;
+    padding: 3rem 1rem;
+    width: 100% !important;
+    .navtop{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
