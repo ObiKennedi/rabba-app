@@ -1,5 +1,3 @@
-//for the history section the transcations that were reversed will use class of sub1 for the text colour the completed transcation which are the ones in the active will be normal as shown in the active section while the failed ones will use class of sub as shown in the pending section only that the pay noew button will change to the price of the bill.
-
 "use client";
 
 import Image from "next/image";
@@ -172,20 +170,13 @@ function HistoryComponent() {
         },
         {
             id: 2,
-            name: "Electricity",
-            icon: "/Frame (5).png",
-            amount: 2500,
-            status: "Failed Sep 2, 2025 3:15 PM (Insufficient funds)",
-        },
-        {
-            id: 3,
             name: "Airtime",
             icon: "/Frame (3).png",
             amount: 1200,
             status: "Reversed Sep 1, 2025 12:30 PM",
         },
         {
-            id: 4,
+            id: 3,
             name: "Electricity",
             icon: "/Frame (5).png",
             amount: 3500,
@@ -203,7 +194,6 @@ function HistoryComponent() {
         )
     }
     const getStatusClass = (status: string): string => {
-        if (status.toLowerCase().includes("failed")) return "sub";
         if (status.toLowerCase().includes("reversed")) return "sub1";
         if (status.toLowerCase().includes("overdue")) return "sub";
         return "";
