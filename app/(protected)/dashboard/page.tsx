@@ -12,7 +12,7 @@ export default function DashboardPage() {
             <TopBar />
             <ContentBox />
             <Services />
-            <Image src="/Frame 22.png" alt="avatar" width={399} height={171} />
+            <Image src="/Frame 22.png" alt="avatar" width={355} height={171} />
             <BottomNav />
         </main>
     );
