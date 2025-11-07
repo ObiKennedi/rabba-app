@@ -10,9 +10,8 @@ export const BottomNav = () => {
 
     const links = [
         { href: "/dashboard", icon: "/Frame (7).png", label: "Dashboard" },
-        { href: "/bills", icon: "/Frame (8).png", label: "Bills" },
-        { href: "/deals", icon: "/Frame (8).png", label: "Deals" },
-        { href: "/rewards", icon: "/Frame (9).png", label: "Rewards" },
+        { href: "/bills", icon: "/Frame (16).png", label: "Bills" },
+        { href: "/rewards", icon: "/Frame (15).png", label: "Rewards" },
         { href: "/me", icon: "/Frame (10).png", label: "Me" },
     ];
 

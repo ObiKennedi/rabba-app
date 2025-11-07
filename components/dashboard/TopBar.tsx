@@ -25,10 +25,11 @@ const TopBar = () => {
     const [greeting, setGreeting] = useState("Hello");
 
     const actionItems: ActionItem[] = [
-        { id: 1, title: "Top up", icon: "/Frame (3).png", width: 24, height: 24 },
-        { id: 2, title: "Utilities", icon: "/Frame (4).png", width: 24, height: 24 },
-        { id: 3, title: "Airtime to cash", icon: "/Frame (3).png", width: 24, height: 24 },
-        { id: 4, title: "R2R", icon: "/nigeria-naira-icon 1.png", width: 17, height: 18 },
+        { id: 1, title: "Data", icon: "/Frame (3).png", width: 24, height: 24 },
+        { id: 2, title: "Airtime", icon: "/Frame (17).png", width: 24, height: 24 },
+        { id: 3, title: "R2R", icon: "/nigeria-naira-icon 1.png", width: 17, height: 18 },
+        { id: 4, title: "Airtime to cash", icon: "/Frame (3).png", width: 24, height: 24 },
+        { id: 5, title: "Utilities", icon: "/Frame (4).png", width: 24, height: 24 },
     ];
 
     useEffect(() => {

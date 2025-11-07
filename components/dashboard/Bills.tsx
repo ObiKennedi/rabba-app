@@ -1,3 +1,5 @@
+//for the history section the transcations that were reversed will use class of sub1 for the text colour the completed transcation which are the ones in the active will be normal as shown in the active section while the failed ones will use class of sub as shown in the pending section only that the pay noew button will change to the price of the bill.
+
 "use client";
 
 import Image from "next/image";
@@ -5,6 +7,15 @@ import { useState } from "react";
 import "@/styles/dasboard/bills.scss"
 
 
+interface Bill {
+    id: number;
+    name: string;
+    icon: string;
+    amount: number;
+    date?: string;
+    status?: string;
+    substatus?: string;
+}
 
 export default function Bills() {
     const [activeTab, setActiveTab] = useState("here");
@@ -41,51 +52,58 @@ export default function Bills() {
     );
 }
 
+function EmptyState({ message, image }: { message: string; image: string }) {
+    return (
+        <div className="empty-state">
+            <Image src={image} alt="Empty illustration" width={140} height={140} />
+            <p>{message}</p>
+        </div>
+    );
+}
+
 function HereComponent() {
+    const bills: Bill[] = [
+        {
+            id: 1,
+            name: "Electricity",
+            icon: "/Frame (5).png",
+            amount: 2500,
+            date: "Sep 5, 2025 2:35 AM",
+        },
+        {
+            id: 2,
+            name: "DSTV",
+            icon: "/Frame (6).png",
+            amount: 4800,
+            date: "Sep 4, 2025 4:50 PM",
+        },
+    ]; 
+
+    if (bills.length === 0) {
+        return (
+            <EmptyState
+                image="/Frame (27).png" 
+                message="There is no active bill on Rabba yet. Start transacting today"
+            />
+        );
+    }
     return (
         <div className="bills-content">
             <div className="tab-content">
-                <div className="tab-content1">
-                    <div className="tab-content2">
-                        <div className="tab-contentimg"><Image src="/Frame (5).png" alt="avatar" width={20} height={20} /></div>
-                            <div>
-                                <p>Electricity</p>
-                                <p>Paid Sep 5, 2025 2:35 AM</p>
+                {bills.map((bill) => (
+                    <div className="tab-content1" key={bill.id}>
+                        <div className="tab-content2">
+                            <div className="tab-contentimg">
+                                <Image src={bill.icon} alt={bill.name} width={20} height={20} />
                             </div>
-                    </div>
-                    <p>2500</p>
-                </div>
-                <div className="tab-content1">
-                    <div className="tab-content2">
-                        <div className="tab-contentimg"><Image src="/Frame (6).png" alt="avatar" width={20} height={20} /></div>
                             <div>
-                                <p>DSTV</p>
-                                <p>Paid Sep 4, 2025 4:50 PM</p>
+                                <p>{bill.name}</p>
+                                <p>Paid {bill.date}</p>
                             </div>
+                        </div>
+                        <p>{bill.amount.toLocaleString()}</p>
                     </div>
-                    <p>2500</p>
-                </div>
-                <div className="tab-content1">
-                    <div className="tab-content2">
-                        <div className="tab-contentimg"><Image src="/Frame (5).png" alt="avatar" width={20} height={20} /></div>
-                            <div>
-                                <p>Electricity</p>
-                                <p>Paid Sep 5, 2025 2:35 AM</p>
-                            </div>
-                    </div>
-                    <p>2500</p>
-                </div>
-                <div className="tab-content1">
-                    <div className="tab-content2">
-                        <div className="tab-contentimg"><Image src="/Frame (6).png" alt="avatar" width={20} height={20} /></div>
-                            <div>
-                                <p>DSTV</p>
-                                <p>Paid Sep 4, 2025 4:50 PM</p>
-                            </div>
-                    </div>
-                    <p>2500</p>
-                </div>
-                
+                ))}
             </div>
         </div>
         
@@ -93,59 +111,89 @@ function HereComponent() {
 }
 
 function PendingComponent() {
+    const pendingBills: Bill[] = [
+        {
+            id: 1,
+            name: "Electricity",
+            icon: "/Frame (5).png",
+            amount: 3500,
+            status: "2 days overdue",
+            substatus: "Manual reminder",
+        },
+        {
+            id: 2,
+            name: "DSTV",
+            icon: "/Frame (6).png",
+            amount: 4800,
+            status: "5 days overdue",
+            substatus: "Manual reminder",
+        },
+    ]; 
+
+    if (pendingBills.length === 0) {
+        return (
+            <EmptyState
+                image="/Frame (27).png"
+                message="There is no pending bill on Rabba yet. Start transacting today"
+            />
+        );
+    }
     return (
         <div className="bills-content">
             <div className="tab-content">
-                <div className="tab-content1">
-                    <div className="tab-content2">
-                        <div className="tab-contentimg"><Image src="/Frame (5).png" alt="avatar" width={20} height={20} /></div>
-                            <div>
-                                <p>Electricity</p>
-                                <p className="sub">2 days overdue</p>
-                                <p className="sub">Manual reminder</p>
+                {pendingBills.map((bill) => (
+                    <div className="tab-content1" key={bill.id}>
+                        <div className="tab-content2">
+                            <div className="tab-contentimg">
+                                <Image src={bill.icon} alt={bill.name} width={20} height={20} />
                             </div>
-                    </div>
-                    <button>Pay now</button>
-                </div>
-                <div className="tab-content1">
-                    <div className="tab-content2">
-                        <div className="tab-contentimg"><Image src="/Frame (6).png" alt="avatar" width={20} height={20} /></div>
                             <div>
-                                <p>DSTV</p>
-                                <p className="sub">2 days overdue</p>
-                                <p className="sub">Manual reminder</p>
+                                <p>{bill.name}</p>
+                                <p className="sub">{bill.status}</p>
+                                <p className="sub">{bill.substatus}</p>
                             </div>
+                        </div>
+                        <button>Pay now</button>
                     </div>
-                    <button>Pay now</button>
-                </div>
-                <div className="tab-content1">
-                    <div className="tab-content2">
-                        <div className="tab-contentimg"><Image src="/Frame (5).png" alt="avatar" width={20} height={20} /></div>
-                            <div>
-                                <p>Electricity</p>
-                                <p className="sub">2 days overdue</p>
-                                <p className="sub">Manual reminder</p>
-                            </div>
-                    </div>
-                    <button>Pay now</button>
-                </div>
-                <div className="tab-content1">
-                    <div className="tab-content2">
-                        <div className="tab-contentimg"><Image src="/Frame (6).png" alt="avatar" width={20} height={20} /></div>
-                            <div>
-                                <p>DSTV</p>
-                                <p className="sub">5 days overdue</p>
-                                <p className="sub">Manual reminder</p>
-                            </div>
-                    </div>
-                    <button>Pay now</button>
-                </div>
+                ))}
             </div>
         </div>
     );
 }
 
 function HistoryComponent() {
+    const historyBills: Bill[] = [
+        {
+            id: 1,
+            name: "DSTV",
+            icon: "/Frame (6).png",
+            amount: 4800,
+            status: "Paid Sep 3, 2025 4:00 PM",
+        },
+        {
+            id: 2,
+            name: "Electricity",
+            icon: "/Frame (5).png",
+            amount: 2500,
+            status: "Failed Sep 2, 2025 3:15 PM (Insufficient funds)",
+        },
+        {
+            id: 3,
+            name: "Airtime",
+            icon: "/Frame (3).png",
+            amount: 1200,
+            status: "Reversed Sep 1, 2025 12:30 PM",
+        },
+    ]; 
+
+    if (historyBills.length === 0) {
+        return (
+            <EmptyState
+                image="/Frame (27).png"
+                message="You have no history with Rabba yet. Don’t worry, start a transaction to get that solved"
+            />
+        )
+    }
     return (
         <div className="history">
             <div className="history1">
@@ -156,55 +204,28 @@ function HistoryComponent() {
                 <div className="history2">
                     <select name="" id="">
                         <option value="" disabled selected hidden>All Status</option>
-                        <option value="">dstv</option>
-                        <option value="">dstv</option>
-                        <option value="">dstv</option>
+                        <option value="today">Today</option>
+                        <option value="month">This Month</option>
+                        <option value="year">This Year</option>
                     </select>
                 </div>
             </div>
             <div className="bills-content">
                 <div className="tab-content">
-                    <div className="tab-content1">
-                        <div className="tab-content2">
-                            <div className="tab-contentimg"><Image src="/Frame (5).png" alt="avatar" width={20} height={20} /></div>
-                                <div>
-                                    <p>DSTV</p>
-                                    <p>Paid Sep 5, 2025 2:35 AM</p>
+                    {historyBills.map((bill) => (
+                        <div className="tab-content1" key={bill.id}>
+                            <div className="tab-content2">
+                                <div className="tab-contentimg">
+                                    <Image src={bill.icon} alt={bill.name} width={20} height={20} />
                                 </div>
-                        </div>
-                        <p>2500</p>
-                    </div>
-                    <div className="tab-content1">
-                        <div className="tab-content2">
-                            <div className="tab-contentimg"><Image src="/Frame (6).png" alt="avatar" width={20} height={20} /></div>
                                 <div>
-                                    <p>DSTV</p>
-                                    <p className="sub">Failed Sep 4, 2025 2:00 PM</p>
-                                    <p className="sub">Insufficient funds</p>
+                                    <p>{bill.name}</p>
+                                    <p>{bill.status}</p>
                                 </div>
+                            </div>
+                            <p>{bill.amount.toLocaleString()}</p>
                         </div>
-                        <p className="sub">2500</p>
-                    </div>
-                    <div className="tab-content1">
-                        <div className="tab-content2">
-                            <div className="tab-contentimg"><Image src="/Frame (5).png" alt="avatar" width={20} height={20} /></div>
-                                <div>
-                                    <p>DSTV</p>
-                                    <p className="sub1">Reversed Sep 3, 2025 1:52 PM</p>
-                                </div>
-                        </div>
-                        <p className="sub">2500</p>
-                    </div>
-                    <div className="tab-content1">
-                        <div className="tab-content2">
-                            <div className="tab-contentimg"><Image src="/Frame (5).png" alt="avatar" width={20} height={20} /></div>
-                                <div>
-                                    <p>DSTV</p>
-                                    <p>Paid Sep 5, 2025 2:35 AM</p>
-                                </div>
-                        </div>
-                        <p>2500</p>
-                    </div>
+                    ))}
                 </div>
             </div>
             
