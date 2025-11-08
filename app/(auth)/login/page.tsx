@@ -4,7 +4,7 @@ import { Suspense } from "react"
 
 function Login (){
     return(
-        <Suspense>
+        <Suspense fallback={<div>Loading form...</div>}>
             <LoginForm/>
         </Suspense>
     )
