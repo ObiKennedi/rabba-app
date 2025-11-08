@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 "use client"
 
 import * as z from "zod"
 
 import { useForm } from "react-hook-form"
 import { useState, useTransition } from "react"
+import { useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LoginSchema } from "@/schema"
 import { LoginButton } from "./LoginButton"
@@ -16,6 +16,9 @@ import { FormSuccess } from "../FormSuccess"
 import { login } from "@/actions/login"
 
 export const LoginForm = () => {
+
+    const searchParams = useSearchParams();
+    const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Wrong provider, continue google" : ""
 
     const [error, setError] = useState<string | undefined>("")
     const [success, setSuccess] = useState<string | undefined>("")
@@ -36,8 +39,8 @@ export const LoginForm = () => {
         startTransition(()=>{
             login(values)
             .then((data)=>{
-                setError(data.error),
-                setSuccess(data.success)
+                setError(data?.error)
+                //setSuccess(data?.success)
             })
         })
     }
@@ -78,9 +81,12 @@ export const LoginForm = () => {
                     </div>
                     <LoginButton destination="/reset-password">Forgot Password ?</LoginButton>
                 </div>
-                <FormError message={error}/>
+                <FormError message={error || urlError}/>
                 <FormSuccess message={success}/>
-                <button className={isPending? "pending" : ""} disabled={isPending}>{isPending ? "Please wait ...": "Login"}</button>
+                <button
+                    className={isPending? "pending" : ""} 
+                    disabled={isPending}
+                >{isPending ? "Please wait ...": "Login"}</button>
             </form>
         </CardWrapper>
     )
