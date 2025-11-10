@@ -7,6 +7,9 @@
             display: flex;
             align-items: center;
             gap: 11px;
+            img{
+                border-radius: 50%;
+            }
             p{
                 font-size: 14px;
                 font-weight: 500;
@@ -56,6 +59,8 @@
         box-shadow: #0000000A;
         justify-content: space-around;
         padding: 35px 0px;
+        font-size: 10px;
+        font-weight: 500;
         >div{
             display: flex;
             align-items: center;
