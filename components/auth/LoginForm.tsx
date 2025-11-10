@@ -7,13 +7,16 @@ import { useState, useTransition } from "react"
 import { useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LoginSchema } from "@/schema"
-import { LoginButton } from "./LoginButton"
 
+import { LoginButton } from "./LoginButton"
 import { CardWrapper } from "./CardWrapper"
-import "@/styles/auth/LoginForm.scss"
 import { FormError } from "../FormError"
 import { FormSuccess } from "../FormSuccess"
+
 import { login } from "@/actions/login"
+
+import { Eye, EyeOff } from "lucide-react"
+import "@/styles/auth/LoginForm.scss"
 
 export const LoginForm = () => {
 
@@ -22,6 +25,7 @@ export const LoginForm = () => {
 
     const [error, setError] = useState<string | undefined>("")
     const [success, setSuccess] = useState<string | undefined>("")
+    const [showPassword, setShowPassword] = useState(false)
     const [isPending, startTransition] = useTransition()
 
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -32,16 +36,16 @@ export const LoginForm = () => {
         }
     })
 
-    const onSubmit = (values: z.infer<typeof LoginSchema>) =>{
+    const onSubmit = (values: z.infer<typeof LoginSchema>) => {
         setError("")
         setSuccess("")
 
-        startTransition(()=>{
+        startTransition(() => {
             login(values)
-            .then((data)=>{
-                setError(data?.error)
-                //setSuccess(data?.success)
-            })
+                .then((data) => {
+                    setError(data?.error)
+                    setSuccess(data?.success)
+                })
         })
     }
 
@@ -59,34 +63,46 @@ export const LoginForm = () => {
                 <div className="form-container">
                     <div className="input-container">
                         <label htmlFor="email">Email Address</label>
-                        <input 
+                        <input
                             disabled={isPending}
-                            id="email" 
-                            placeholder="example@mail.com" 
-                            type="email" 
+                            id="email"
+                            placeholder="example@mail.com"
+                            type="email"
                             {...form.register("email")}
                         />
                         <div className="error-message">{form.formState.errors.email?.message}</div>
                     </div>
-                    <div className="input-container">
+                    <div className="input-container password-container">
                         <label htmlFor="password">Password</label>
-                        <input 
-                            disabled={isPending}
-                            id="password" 
-                            placeholder="******" 
-                            type="password" 
-                            {...form.register("password")}
-                        />
+                        <div className="password-wrapper">
+                            <input
+                                disabled={isPending}
+                                id="password"
+                                placeholder="******"
+                                type={showPassword ? "text" : "password"}
+                                {...form.register("password")}
+                            />
+                            <span
+                                className="toggle-eye"
+                                onClick={() => setShowPassword(prev => !prev)}
+                            >
+                                {showPassword ? (
+                                    <EyeOff size={20} strokeWidth={2} />
+                                ) : (
+                                    <Eye size={20} strokeWidth={2} />
+                                )}
+                            </span>
+                        </div>
                         <div className="error-message">{form.formState.errors.password?.message}</div>
                     </div>
                     <LoginButton destination="/reset-password">Forgot Password ?</LoginButton>
                 </div>
-                <FormError message={error || urlError}/>
-                <FormSuccess message={success}/>
+                <FormError message={error || urlError} />
+                <FormSuccess message={success} />
                 <button
-                    className={isPending? "pending" : ""} 
+                    className={isPending ? "pending" : ""}
                     disabled={isPending}
-                >{isPending ? "Please wait ...": "Login"}</button>
+                >{isPending ? "Please wait ..." : "Login"}</button>
             </form>
         </CardWrapper>
     )

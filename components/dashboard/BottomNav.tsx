@@ -13,7 +13,7 @@ export const BottomNav = () => {
         { href: "/bills", icon: "/Frame (8).png", label: "Bills" },
         { href: "/deals", icon: "/Frame (8).png", label: "Deals" },
         { href: "/rewards", icon: "/Frame (9).png", label: "Rewards" },
-        { href: "/me", icon: "/Frame (10).png", label: "Me" },
+        { href: "/setting", icon: "/Frame (10).png", label: "Me" },
     ];
 
     return (
