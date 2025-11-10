@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-// import "@/styles/dasboard/contentBox.scss";
+import "@/styles/dasboard/contentBox.scss";
 
 interface ServiceItem {
     id: number;
