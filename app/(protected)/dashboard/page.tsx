@@ -2,8 +2,8 @@ import TopBar  from "@/components/dashboard/TopBar";
 import { BottomNav } from "@/components/dashboard/BottomNav";
 import { ContentBox } from "@/components/dashboard/ContentBox";
 import {Services} from "@/components/dashboard/Services";
+import Ads from "@/components/dashboard/Ads";
 import styles from "@/styles/dasboard/dashboard.module.scss";
-import Image from "next/image";
 
 
 export default function DashboardPage() {
@@ -12,7 +12,7 @@ export default function DashboardPage() {
             <TopBar />
             <ContentBox />
             <Services />
-            <Image src="/Frame 22.png" alt="avatar" width={355} height={171} />
+            <Ads />
             <BottomNav />
         </main>
     );
